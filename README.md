@@ -24,16 +24,16 @@ Thingsboard project includes a powerful gateway open-source software designed to
 
 [https://github.com/thingsboard/thingsboard-gateway](https://github.com/thingsboard/thingsboard-gateway)
 
-The Gateway provides simple integration APIs, and encapsulates common Thingsboard related tasks: device provisioning, local data persistence and delivery, message converters/adaptors and other. It is designed with the assumption that application developers will connect to it through an external MQTT broker or an OPC-UA server, or by implementing custom extensions that support other protocols (e.g. MODBUS). It is based on Java Spring and its monolithic nature introduces various limitations for application developers who wise to extent it with custom protocols, plus it lacks device management features such as OTA software updates, self-healing agents etc. Therefore the combination of Eclipse Kura and other Agile IoT technologies with the thingsboard gateway will bring multiple advantages to application developers.
+The Gateway provides simple integration APIs, and encapsulates common Thingsboard related tasks: device provisioning, local data persistence and delivery, message converters/adaptors and other. It is designed with the assumption that application developers will connect to it through an external MQTT broker or an OPC-UA server, or by implementing custom extensions that support other protocols (e.g. MODBUS). It is based on Java Spring and its monolithic nature introduces various limitations for application developers who wish to extent it with custom protocols, plus it lacks device management features such as OTA software updates, self-healing agents etc. Therefore the combination of Eclipse Kura and other Agile IoT technologies with the Thingsboard gateway will bring multiple advantages to application developers.
 
-After performing a thorough evaluation of Eclipse Kura, Resin.io and the Eclipse AGAIL project, a number of architecture approaches were identified, which are described below. 
+After performing a thorough evaluation of Eclipse Kura, Resin.io and the Eclipse AGAIL project, a number of architecture approaches were identified, which are described below.
 
 
-## 
+##
 
 
 ## Architecture approach
 
-Thingsboard gateway (TB-GW) is an active project, where new features are constantly added, and it is important to ensure seamless upgradability with future versions of the gateway. Therefore a loose coupled approached is prefered vs one that requires major refactoring of the TB-GW source code. A number of [architecture scenarios](AgileIoT-GatewayXM_D1_v0.3.pdf) has been explored with proof of concept implementations in order to conclude on the final most efficient architecture. So far most of the work is focused on a **lightweight Kura OSGi bundle that acts as a thingsboard gateway** and is documentent in the repo bellow.
+Thingsboard gateway (TB-GW) is an active project, where new features are constantly added, and it is important to ensure seamless upgradeability with future versions of the gateway. Therefore a loose coupled approach is preferred versus one that requires major refactoring of the TB-GW source code. A number of [architecture scenarios](AgileIoT-GatewayXM_D1_v0.3.pdf) has been explored with proof of concept implementations in order to conclude on the final most efficient architecture. So far most of the work is focused on a **lightweight Kura OSGi bundle that acts as a thingsboard gateway** and is documented in the repo bellow.
 
 https://github.com/exmgr/Kura-Thingsboard-Bundle
