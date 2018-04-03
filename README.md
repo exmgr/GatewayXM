@@ -32,8 +32,21 @@ After performing a thorough evaluation of Eclipse Kura, Resin.io and the Eclipse
 ##
 
 
-## Architecture approach
+## Kura - TB Gateway Architecture approaches
 
-Thingsboard gateway (TB-GW) is an active project, where new features are constantly added, and it is important to ensure seamless upgradeability with future versions of the gateway. Therefore a loose coupled approach is preferred versus one that requires major refactoring of the TB-GW source code. A number of [architecture scenarios](AgileIoT-GatewayXM_D1_v0.3.pdf) has been explored with proof of concept implementations in order to conclude on the final most efficient architecture. So far most of the work is focused on a **lightweight Kura OSGi bundle that acts as a thingsboard gateway** and is documented in the repo bellow.
+Thingsboard gateway (TB-GW) is an active project, where new features are constantly added, and it is important to ensure seamless upgradeability with future versions of the gateway. Therefore a loose coupled approach is preferred versus one that requires major refactoring of the TB-GW source code. Seven [architecture scenarios](AgileIoT-GatewayXM_D1_v0.3.pdf) have been explored so far with proof of concept implementations in order to conclude on the most efficient approach. 
 
-https://github.com/exmgr/Kura-Thingsboard-Bundle
+### Lightweight TB gateway OSGi bundle ### [(Architecture scenario #2)](AgileIoT-GatewayXM_D1_v0.3.pdf)
+To take full advantage of Kura’s modular architecture, we decided to create a new, **lightweight TB gateway OSGi bundle** that is not based on the original TB-GW Java Spring source, but instead is utilizing Eclipse Paho MQTT library for direct communication with TB server over the TB gateway API. Doing so we avoid the complexities in refactoring the original TB-GW Java Spring app in to an OSGi bundle, which requires the handling of external configuration files within the Kura environment. 
+
+More inforation on the **lightweight TB gateway OSGi bundle** can be found here: https://github.com/exmgr/Kura-Thingsboard-Bundle
+
+### TB-GW as a service, managed by a Kura OSGi bundle ### [(Architecture scenario #3)](AgileIoT-GatewayXM_D1_v0.3.pdf)
+We came up with an alternative architectural approach, in which we take full advantage of the original TB-GW Java Spring app as is, but still have the ability to control it from kura. **TB-GW as a service, managed by a Kura OSGi bundle** is aiming to utilize the original TB-GW deployed as intended by its authors (i.e. as a service) to ensure maximum future proofness. For Kura to be able to manage an external service, a new custom Kura app / OSGi bundle is created, that provides an external managing ability for TB-GW service.
+
+A first step towards this approach is to deploy the TB-GW service as normal and then have the a Kura bundle that can start/stop the service via Kura’s web ui. TB-GW is then configured to subscribe to Kura’s built-in Artemis MQTT broker to listen for devices publishing telemetry data, TB-GW converts the payload to a Thingsboard compatible JSON format and forwards it the Thingsboard server. As a final step in the setup process, a CloudService must be set up that will be used by the Kura Wires graphs to publish telemetry to the local ArtemisMQTT service. The user can then add his devices as Assets in Kura, configure their data inputs as channels, and set up Kura Wire graphs with a simple Timer -> Asset -> Publisher flow to publish their data to Thingsboard.
+
+More information on the **TB-GW service, managed by a Kura OSGi bundle** can be found here: https://github.com/exmgr/Kura-Tb-Gateway-Manager
+
+
+
