@@ -9,6 +9,8 @@ The gateway consists of:
  - **ESP8266/ESP32 firmware** Arduino firmware based on [ESP8266MQTTMesh](https://github.com/PhracturedBlue/ESP8266MQTTMesh) with OTA and MQTT support. A mesh network sensor node for collecting telemetry in areas with limited connectivity.
 
 
+ ![Architecture](images/architecture.png)
+
 ## Overview
 
 ### Thingsboard
