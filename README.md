@@ -8,7 +8,6 @@ The gateway consists of:
  - **Kura bundle** Responsible for forwarding data from ModBus devices and ESP8266 sensors to Thingsboard as telemetry.
  - **ESP8266/ESP32 firmware** Arduino firmware based on [ESP8266MQTTMesh](https://github.com/PhracturedBlue/ESP8266MQTTMesh) with OTA and MQTT support. A mesh network sensor node for collecting telemetry in areas with limited connectivity.
 
----- new architecture pic ----
 
 ## Overview
 
@@ -33,6 +32,7 @@ ResinOS is an operating system based on Yocto Linux, optimized for running Docke
 To manage your gateway(s) you need a Resin.io account. A free account allows up to 10 free devices. In Resin, devices are created under an "Application" and all devices in this application run the same software and are updated at the same time.
 
 To set up a new device, create an application in your resin.io dashboard and click "Add device", select "ethernet only", "production" edition and click download to download the ResinOS image which needs to be flashed to an SD card (use [etcher.io](https://etcher.io/)) and booted on your device. As soon as the device boots, it will appear in the resin.io dashboard as "Online".
+
 ![Devices screen](images/resin_devices.png)
 
 The Resin workflow is straightforward: a resin remote is added to the local git repository, changes are commited and pushed to it. The containers are built by resin's infrastructure on the cloud and deployed automatically to all the devices belonging to the application.
@@ -95,10 +95,14 @@ Now you can push it to resin which then will automatically build and deploy it t
 
     git push resin resin-multi:master
 
+If the build is successful you will the resin unicorn:
+
 ![After a successful build](images/resin_push.png)
 
 After everything is pushed to the resin repo and compiled, all the services appear in the device's dashboard and start downloading:
+
 ![Downloading and installing pushed containers](images/resin_downloading.png)
+
 Kura's web interface can now be accessed at port [gateway_ip]:1234.
 
 ### Installing the Kura ModBus driver
@@ -133,6 +137,7 @@ Open "GatewayXM" and fill the form:
 * Poll interval: Interval at which the configured slaves are read.
 
 Click apply to save.
+
 ![GatewayXM Kura bundle config screen](images/bundle_config.png)
 
 ### Configuring Kura Artemis MQTT broker
