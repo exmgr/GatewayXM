@@ -1,0 +1,9 @@
+[submodule "GatewayXM-Agile-Stack"]
+	path = GatewayXM-Agile-Stack
+	url = https://github.com/exmgr/GatewayXM-Agile-Stack
+[submodule "GatewayXM-Kura-Tb-Bundle"]
+	path = GatewayXM-Kura-Tb-Bundle
+	url = https://github.com/exmgr/GatewayXM-Kura-Tb-Bundle
+[submodule "GatewayXM-Sensor-Node"]
+	path = GatewayXM-Sensor-Node
+	url = https://github.com/exmgr/GatewayXM-Sensor-Node
