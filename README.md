@@ -184,7 +184,7 @@ The sample code in the repository reads temperature and humidity from a DHT21 se
 
 After compiling and flashing, the node is ready to join the network and send telemetry.
 
-## Displaying the data in thingboard
+## Displaying telemetry data in thingsboard
 Assuming that the bundle and all the devices are configured properly, the devices appear automatically in thingsboard (under “Devices”) right after the first time data is read from their channels and submitted to TB.
 
 ![Device automatically appears in thingsboard devices](images/tb_devices.png)
